@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+
+    <script src="bootstrap.min.js"></script>
+
+    <title>To Do App</title>
+    <style>
+        .card {
+            background-color: darkorange;
+            width: 300px;
+            margin: 20px;
+            min-width: 10px;
+            min-height: 10px;
+            border-radius: 5px;
+            border: 2px solid white;
+        }
+
+        .items {
+            color: whitesmoke;
+            font-family: poppins;
+            font-weight: 800;
+            padding: 5px;
+        }
+
+        #cardsArea {
+            background-color: darkcyan;
+            min-width: 50px;
+            min-height: 50px;
+            border-radius: 10px;
+            margin: auto;
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .cardHeader {
+            border-bottom: 2px solid white;
+
+        }
+
+        .cardBody {
+
+        }
+
+        .newItemButton, .deleteItemButton {
+            display: inline-block;
+            right: 0;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin: 5px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        class Card {
+            constructor() {
+                this.card = document.createElement('div');
+                this.card.classList.add('card');
+
+
+                //card header
+                this.cardHeader = document.createElement('div');
+                this.cardHeader.classList.add('cardHeader');
+
+                //card header button +
+                this.cardNewItemButton = document.createElement('button');
+                this.cardNewItemButton.classList.add('btn', 'btn-primary', 'newItemButton');
+                this.cardNewItemButton.setAttribute('onclick', 'newItem(event)');
+                
+
+                this.cardNewItemButtonIcon = document.createElement('i');
+                this.cardNewItemButtonIcon.classList.add('fa', 'fa-plus', 'newItemButton');
+                this.cardNewItemButtonIcon.textContent = "+";
+                
+                this.cardNewItemButton.appendChild(this.cardNewItemButtonIcon);
+                this.cardHeader.appendChild(this.cardNewItemButton);
+
+                this.cardTitle = document.createElement('label');
+                this.cardTitle.textContent = "Title";
+                this.cardTitle.classList.add('cardTitle');
+                this.cardHeader.appendChild(this.cardTitle);
+
+                this.card.appendChild(this.cardHeader);
+
+
+                // card body
+                this.cardBody = document.createElement('div');
+                this.ul = document.createElement('ul');
+                this.deleteItemButton = document.createElement('button');
+                this.deleteItemButton.setAttribute('type', 'button');
+                this.deleteItemButton.setAttribute('onclick', 'deleteThisItem(event)');
+                this.deleteItemButton.classList.add('btn', 'btn-primary', 'deleteItemButtom');
+                this.deleteItemButtonIcon = document.createElement('i');
+                this.deleteItemButtonIcon.textContent = "-";
+                this.deleteItemButton.appendChild(this.deleteItemButtonIcon);
+                this.ul.appendChild(this.deleteItemButton);
+                this.cardBody.appendChild(this.ul);
+                
+                this.card.appendChild(this.cardBody);
+                return this.card;
+            }
+        }
+
+        function newCard() {
+            let card = new Card();
+            document.getElementById('cardsArea').appendChild(card);
+        }
+
+        function newItem(event) {
+            event.currentTarget.parentElement.textContent = 'changed by button';
+        }
+
+        function deleteThisItem(event) {
+
+        }
+    </script>
+</head>
+
+<body class="body-style">
+    <button id="newToDo" type="button" class="btn btn-primary" onclick="newCard()">
+        <i class="fa fa-plus"></i>
+        New Card
+    </button>
+
+    <div id="cardsArea">
+        <div class="card">
+            <ol>
+                <li class="items">Item number 1</li>
+                <li class="items">Item number 2</li>
+                <li class="items">Item number 3</li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>
